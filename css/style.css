@@ -135,6 +135,17 @@ button.primary {
   fill: transparent;
   pointer-events: all;
 }
+/* 贺卡主体：轻微上下浮动 + 金色呼吸光晕，引导视线 */
+#room-card { animation: cardBob 3.2s ease-in-out infinite; }
+#room-card .card-glow { animation: cardGlow 2.6s ease-in-out infinite; }
+@keyframes cardBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes cardGlow {
+  0%, 100% { opacity: .10; }
+  50% { opacity: .32; }
+}
 
 /* 回访面板 */
 #replay-panel {
@@ -316,6 +327,12 @@ button.primary {
 }
 .diary-nav button { min-width: 60px; }
 #diary-count { font-size: 15px; color: var(--coffee-soft); }
+#btn-diary-to-cake {
+  width: 100%;
+  margin-top: 14px;
+  font-size: 18px;
+  min-height: 52px;
+}
 
 /* =============================================================================
    3. 蛋糕

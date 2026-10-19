@@ -68,6 +68,7 @@
 
     $("#diary-title").textContent = CFG.diary.title;
     $("#diary-intro").textContent = CFG.diary.intro;
+    $("#btn-diary-to-cake").textContent = CFG.diary.toCakeLabel;
 
     $("#cake-wish").textContent = CFG.cake.wishPrompt;
     $("#blow-hint").textContent = CFG.cake.blowHint;
@@ -409,6 +410,7 @@
 
   /* ---------- 流程按钮 ---------- */
   $("#btn-to-diary").addEventListener("click", function () { renderMemory(0); goTo("diary"); });
+  $("#btn-diary-to-cake").addEventListener("click", function () { enterCake(); goTo("cake"); });
   $("#btn-to-letter").addEventListener("click", function () { markCompleted(); goTo("letter"); });
   $("#letter-back").addEventListener("click", function () {
     stopSpeech();

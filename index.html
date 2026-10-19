@@ -123,17 +123,19 @@
         </g>
 
         <!-- 贺卡（居中，最突出）-->
-        <g id="room-card" class="clickable" filter="url(#softshadow)">
-          <g transform="rotate(-4 214 366)">
-            <rect x="190" y="300" width="48" height="130" rx="7" fill="#FFFDF8" stroke="#E6C7AB" stroke-width="2"/>
-            <rect x="190" y="300" width="48" height="130" rx="7" fill="none" stroke="#EAD9C2" stroke-width="1" stroke-dasharray="3 4" opacity="0.7"/>
-            <circle cx="214" cy="330" r="11" fill="#F0A94B"/>
-            <circle cx="214" cy="330" r="5" fill="#FFFDF8"/>
-            <path d="M214 341 Q210 358 214 368" stroke="#7FA36A" stroke-width="2" fill="none"/>
-            <circle cx="206" cy="372" r="3" fill="#E6C7AB"/>
-            <circle cx="222" cy="376" r="2.5" fill="#E6C7AB"/>
+        <g id="room-card" class="clickable">
+          <ellipse class="card-glow" cx="214" cy="350" rx="80" ry="95" fill="#F0A94B" opacity="0.18"/>
+          <g class="card-body" transform="rotate(-3 214 350)" filter="url(#softshadow)">
+            <rect x="180" y="270" width="68" height="160" rx="9" fill="#FFFDF8" stroke="#E6C7AB" stroke-width="2.5"/>
+            <rect x="180" y="270" width="68" height="160" rx="9" fill="none" stroke="#EAD9C2" stroke-width="1.2" stroke-dasharray="3 5" opacity="0.7"/>
+            <circle cx="214" cy="306" r="15" fill="#F0A94B"/>
+            <circle cx="214" cy="306" r="6.5" fill="#FFFDF8"/>
+            <path d="M214 321 Q208 344 214 360" stroke="#7FA36A" stroke-width="2.5" fill="none"/>
+            <circle cx="205" cy="366" r="4" fill="#E6C7AB"/>
+            <circle cx="223" cy="372" r="3.5" fill="#E6C7AB"/>
+            <circle cx="212" cy="379" r="3" fill="#E6C7AB"/>
           </g>
-          <rect class="hit" x="182" y="286" width="64" height="156"/>
+          <rect class="hit" x="170" y="254" width="88" height="192"/>
         </g>
       </svg>
 
@@ -182,6 +184,7 @@
         <span id="diary-count">1 / 5</span>
         <button id="diary-next">下一页 ›</button>
       </div>
+      <button id="btn-diary-to-cake" class="primary">继续 → 吹蜡烛</button>
     </section>
 
     <!-- ==================== 3. 蛋糕 ==================== -->
