@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#F6F0E5">
+  <title>给妈妈的生日礼物</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app">
+
+    <!-- 顶部：返回 + 声音开关 -->
+    <div class="topbar">
+      <button class="btn-back" aria-label="返回">← 返回</button>
+      <button id="sound-toggle" aria-label="声音开关">开启声音</button>
+    </div>
+
+    <!-- ==================== 首页 · 房间 ==================== -->
+    <section id="scene-room" class="scene">
+      <svg id="room-svg" viewBox="0 0 400 660" preserveAspectRatio="xMidYMax slice" aria-label="午后的小房间">
+        <defs>
+          <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#FBF2E2"/>
+            <stop offset="1" stop-color="#F3E6D0"/>
+          </linearGradient>
+          <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#E3C79B"/>
+            <stop offset="1" stop-color="#C9A877"/>
+          </linearGradient>
+          <linearGradient id="table" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#C9965F"/>
+            <stop offset="1" stop-color="#A8724B"/>
+          </linearGradient>
+          <linearGradient id="sunbeam" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#F7E3A6" stop-opacity="0.5"/>
+            <stop offset="1" stop-color="#F7E3A6" stop-opacity="0"/>
+          </linearGradient>
+          <radialGradient id="sky" cx="0.5" cy="0.35" r="0.85">
+            <stop offset="0" stop-color="#FBE9C0"/>
+            <stop offset="1" stop-color="#F2D9A8"/>
+          </radialGradient>
+          <filter id="softshadow" x="-40%" y="-40%" width="180%" height="180%">
+            <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#6B4F3F" flood-opacity="0.20"/>
+          </filter>
+        </defs>
+
+        <!-- 墙 -->
+        <rect x="0" y="0" width="400" height="660" fill="url(#wall)"/>
+
+        <!-- 窗户 + 窗帘 -->
+        <rect x="118" y="66" width="164" height="148" rx="8" fill="url(#sky)" stroke="#6B4F3F" stroke-width="5"/>
+        <line x1="200" y1="66" x2="200" y2="214" stroke="#6B4F3F" stroke-width="4"/>
+        <line x1="118" y1="140" x2="282" y2="140" stroke="#6B4F3F" stroke-width="4"/>
+        <path d="M108 58 Q116 130 108 220 Z" fill="#E6C7AB" opacity="0.9"/>
+        <path d="M292 58 Q284 130 292 220 Z" fill="#E6C7AB" opacity="0.9"/>
+
+        <!-- 阳光 -->
+        <polygon points="150,214 306,470 56,470 160,214" fill="url(#sunbeam)"/>
+
+        <!-- 地板 -->
+        <rect x="0" y="500" width="400" height="160" fill="url(#floor)"/>
+        <g stroke="#6B4F3F" stroke-opacity="0.12" stroke-width="2">
+          <line x1="0" y1="530" x2="400" y2="530"/>
+          <line x1="0" y1="568" x2="400" y2="568"/>
+          <line x1="0" y1="606" x2="400" y2="606"/>
+          <line x1="0" y1="644" x2="400" y2="644"/>
+        </g>
+
+        <!-- 地毯 -->
+        <ellipse cx="200" cy="520" rx="150" ry="46" fill="#E6C7AB" opacity="0.55"/>
+
+        <!-- 桌子 -->
+        <ellipse cx="200" cy="452" rx="168" ry="22" fill="#A8724B" filter="url(#softshadow)"/>
+        <rect x="70" y="430" width="260" height="22" rx="11" fill="url(#table)"/>
+        <path d="M120 452 L112 520 L132 520 L138 452 Z" fill="#8F5E3C"/>
+        <path d="M268 452 L262 520 L282 520 L288 452 Z" fill="#8F5E3C"/>
+
+        <!-- 满天星（花瓶）-->
+        <g id="room-flowers" class="clickable">
+          <g stroke="#7FA36A" stroke-width="2" fill="none">
+            <path d="M85 430 Q80 380 70 340"/>
+            <path d="M85 430 Q90 375 100 345"/>
+            <path d="M85 430 Q75 385 60 360"/>
+            <path d="M85 430 Q95 385 110 350"/>
+          </g>
+          <g fill="#FFFDF8" stroke="#E8D9C0" stroke-width="1">
+            <circle cx="70" cy="338" r="7"/><circle cx="78" cy="330" r="6"/><circle cx="86" cy="336" r="6"/>
+            <circle cx="100" cy="343" r="6"/><circle cx="108" cy="350" r="7"/>
+            <circle cx="60" cy="358" r="6"/><circle cx="66" cy="366" r="5"/>
+            <circle cx="110" cy="352" r="5"/>
+            <circle cx="92" cy="320" r="5"/><circle cx="80" cy="318" r="5"/>
+          </g>
+          <g fill="#F0C66A">
+            <circle cx="70" cy="338" r="2"/><circle cx="78" cy="330" r="2"/><circle cx="100" cy="343" r="2"/>
+            <circle cx="60" cy="358" r="2"/><circle cx="108" cy="350" r="2"/>
+          </g>
+          <path d="M78 430 Q78 396 85 396 Q92 396 92 430 Z" fill="#E6C7AB" opacity="0.9"/>
+          <ellipse cx="85" cy="430" rx="9" ry="3" fill="#C9A877"/>
+          <ellipse class="hit" cx="85" cy="385" rx="44" ry="62"/>
+        </g>
+
+        <!-- 蛋糕 -->
+        <g id="room-cake" class="clickable">
+          <ellipse cx="320" cy="432" rx="32" ry="7" fill="#FFFDF8"/>
+          <rect x="294" y="402" width="52" height="24" rx="7" fill="#F6E3C4"/>
+          <rect x="291" y="394" width="58" height="13" rx="5" fill="#E6C7AB"/>
+          <path d="M320 394 L320 374" stroke="#8A6A57" stroke-width="2.5"/>
+          <ellipse cx="320" cy="371" rx="5" ry="7" fill="#E9C97C"/>
+          <ellipse class="hit" cx="320" cy="400" rx="42" ry="48"/>
+        </g>
+
+        <!-- 日记本 -->
+        <g id="room-diary" class="clickable">
+          <g transform="rotate(6 130 420)">
+            <rect x="98" y="404" width="70" height="24" rx="4" fill="#6B4F3F"/>
+            <rect x="100" y="406" width="66" height="20" rx="3" fill="#8A6A57"/>
+            <line x1="133" y1="406" x2="133" y2="426" stroke="#6B4F3F" stroke-width="1.5"/>
+            <path d="M158 404 L158 398 L164 404 Z" fill="#E6C7AB"/>
+            <circle cx="116" cy="416" r="5" fill="#E6C7AB"/>
+          </g>
+          <rect class="hit" x="92" y="394" width="82" height="38"/>
+        </g>
+
+        <!-- 贺卡（居中，最突出）-->
+        <g id="room-card" class="clickable" filter="url(#softshadow)">
+          <g transform="rotate(-4 214 366)">
+            <rect x="190" y="300" width="48" height="130" rx="7" fill="#FFFDF8" stroke="#E6C7AB" stroke-width="2"/>
+            <rect x="190" y="300" width="48" height="130" rx="7" fill="none" stroke="#EAD9C2" stroke-width="1" stroke-dasharray="3 4" opacity="0.7"/>
+            <circle cx="214" cy="330" r="11" fill="#F0A94B"/>
+            <circle cx="214" cy="330" r="5" fill="#FFFDF8"/>
+            <path d="M214 341 Q210 358 214 368" stroke="#7FA36A" stroke-width="2" fill="none"/>
+            <circle cx="206" cy="372" r="3" fill="#E6C7AB"/>
+            <circle cx="222" cy="376" r="2.5" fill="#E6C7AB"/>
+          </g>
+          <rect class="hit" x="182" y="286" width="64" height="156"/>
+        </g>
+      </svg>
+
+      <div id="room-hint">点一点桌上的贺卡</div>
+
+      <!-- 走完一遍后的回访入口 -->
+      <div id="replay-panel">
+        <button id="replay-reread">再读生日信</button>
+        <button id="replay-diary">再看日记</button>
+        <button id="replay-cake">再看蛋糕</button>
+        <button id="replay-all">重播整个流程</button>
+      </div>
+      <div id="replay-hint">你可以随时回来，单独重温任何一段。</div>
+    </section>
+
+    <!-- ==================== 1. 贺卡 ==================== -->
+    <section id="scene-card" class="scene">
+      <div id="card">
+        <div class="card-flap">
+          <svg class="card-flower" viewBox="0 0 80 80" aria-hidden="true">
+            <g fill="#F0A94B">
+              <circle cx="40" cy="26" r="10"/><circle cx="26" cy="34" r="9"/><circle cx="54" cy="34" r="9"/>
+              <circle cx="30" cy="52" r="9"/><circle cx="50" cy="52" r="9"/>
+            </g>
+            <circle cx="40" cy="40" r="9" fill="#FFFDF8"/>
+            <circle cx="40" cy="40" r="4" fill="#F0C66A"/>
+            <path d="M40 49 Q38 64 40 74" stroke="#7FA36A" stroke-width="3" fill="none"/>
+          </svg>
+          <div id="card-cover-title">生日快乐</div>
+          <div id="card-cover-sub">点击展开</div>
+        </div>
+        <div class="card-face">
+          <div id="card-opening"></div>
+          <button id="btn-to-diary" class="primary">翻开日记，看看我们的回忆</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 2. 日记 ==================== -->
+    <section id="scene-diary" class="scene">
+      <div id="diary-title">时间日记</div>
+      <div id="diary-intro">从出国前到现在，我把想你的瞬间都收在了这里。</div>
+      <div id="diary-page"></div>
+      <div class="diary-nav">
+        <button id="diary-prev">‹ 上一页</button>
+        <span id="diary-count">1 / 5</span>
+        <button id="diary-next">下一页 ›</button>
+      </div>
+    </section>
+
+    <!-- ==================== 3. 蛋糕 ==================== -->
+    <section id="scene-cake" class="scene">
+      <div id="cake-stage">
+        <svg id="cake-svg" viewBox="0 0 240 250" aria-label="生日蛋糕">
+          <ellipse cx="120" cy="234" rx="88" ry="12" fill="#FFFDF8"/>
+          <path d="M40 202 Q40 152 120 152 Q200 152 200 202 Z" fill="#F6E3C4"/>
+          <path d="M52 174 Q52 142 120 142 Q188 142 188 174 Z" fill="#E6C7AB"/>
+          <ellipse cx="120" cy="152" rx="66" ry="14" fill="#F0E2C8"/>
+          <rect x="116" y="96" width="8" height="54" rx="3" fill="#FFFDF8" stroke="#E6C7AB" stroke-width="1.5"/>
+          <rect x="116" y="96" width="8" height="6" rx="2" fill="#E6C7AB"/>
+          <path d="M120 96 L120 88" stroke="#6B4F3F" stroke-width="2.5"/>
+        </svg>
+        <div id="flame" class="lit"><i class="flame-core"></i></div>
+        <div id="smoke"><i></i><i></i></div>
+      </div>
+
+      <button id="cake-wish">先闭上眼睛，许个愿吧</button>
+
+      <div id="blow-controls">
+        <p id="blow-hint">对着麦克风吹一吹，吹灭蜡烛</p>
+        <button id="blow-tap">点这里吹灭蜡烛</button>
+      </div>
+
+      <div id="cake-blessing"></div>
+      <button id="btn-relight">重新点燃</button>
+      <button id="btn-to-letter" class="primary">还有一封信，读给你听</button>
+    </section>
+
+    <!-- ==================== 4. 最后的信 ==================== -->
+    <section id="scene-letter" class="scene">
+      <div id="letter-title">写给妈妈的一封信</div>
+      <div id="letter-paper">
+        <div id="letter-body"></div>
+      </div>
+      <div class="letter-actions">
+        <audio id="letter-audio" class="hidden" controls preload="none"></audio>
+        <button id="letter-play">朗读这封信</button>
+        <button id="letter-stop" class="hidden">停止</button>
+        <button id="letter-back" class="primary"><span id="letter-back-label">回到房间</span></button>
+      </div>
+    </section>
+
+    <!-- ==================== 照片放大 ==================== -->
+    <div id="lightbox">
+      <img id="lightbox-img" alt="照片放大">
+    </div>
+
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/blow.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
