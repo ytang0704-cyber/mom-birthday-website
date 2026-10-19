@@ -264,16 +264,83 @@ button.primary {
   color: var(--coffee-soft);
   margin: 6px 0 16px;
 }
-#diary-page {
+#diary-book {
   flex: 1;
   position: relative;
+  perspective: 2200px;
+  -webkit-perspective: 2200px;
+}
+.diary-sheet {
+  position: absolute;
+  inset: 0;
   background: var(--warm-white);
   border: 1px solid var(--apricot);
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(107, 79, 63, 0.14);
+  overflow: hidden;
+}
+.diary-content {
+  height: 100%;
   overflow-y: auto;
   padding: 22px 20px;
   -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+.diary-back {
+  background:
+    radial-gradient(circle at 50% 40%, rgba(230, 199, 171, 0.18), transparent 60%),
+    repeating-linear-gradient(0deg, rgba(107, 79, 63, 0.03) 0 1px, transparent 1px 26px);
+}
+#diary-under { z-index: 1; }
+#diary-flipper {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+#diary-flipper .face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+#diary-flipper .face.back {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+}
+#diary-flipper.forward {
+  transform-origin: left center;
+  animation: flipFwd .75s cubic-bezier(.45, .05, .25, 1) forwards;
+}
+#diary-flipper.backward {
+  transform-origin: right center;
+  animation: flipBwd .75s cubic-bezier(.45, .05, .25, 1) forwards;
+}
+@keyframes flipFwd {
+  from { transform: rotateY(0); }
+  to   { transform: rotateY(-180deg); }
+}
+@keyframes flipBwd {
+  from { transform: rotateY(0); }
+  to   { transform: rotateY(180deg); }
+}
+.diary-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(circle at 50% 55%, transparent 42%, rgba(91, 70, 55, 0.18) 100%);
+}
+#diary-flipper.forward ~ .diary-shade,
+#diary-flipper.backward ~ .diary-shade {
+  animation: shadeIn .75s ease-in-out;
+}
+@keyframes shadeIn {
+  0% { opacity: 0; }
+  40% { opacity: 0.9; }
+  100% { opacity: 0; }
 }
 .mem-period {
   display: inline-block;

@@ -178,7 +178,20 @@
     <section id="scene-diary" class="scene">
       <div id="diary-title">时间日记</div>
       <div id="diary-intro">从出国前到现在，我把想你的瞬间都收在了这里。</div>
-      <div id="diary-page"></div>
+      <div id="diary-book">
+        <div id="diary-under" class="diary-sheet">
+          <div id="diary-under-content" class="diary-content"></div>
+        </div>
+        <div id="diary-flipper" class="diary-flipper">
+          <div class="diary-sheet face front">
+            <div id="diary-page" class="diary-content"></div>
+          </div>
+          <div class="diary-sheet face back">
+            <div class="diary-content diary-back"></div>
+          </div>
+        </div>
+        <div class="diary-shade"></div>
+      </div>
       <div class="diary-nav">
         <button id="diary-prev">‹ 上一页</button>
         <span id="diary-count">1 / 5</span>

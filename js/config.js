@@ -154,5 +154,7 @@ window.APP_CONFIG = {
     onLabel: "关闭声音",
     // 轻柔循环的背景音乐（占位，请放 assets/audio/bgm.mp3 之类的文件，留空则使用内置的轻音乐盒音色）
     backgroundMusic: "",
+    // 翻书音效（CC0 免版权，已内置 assets/audio/page-turn.mp3；留空则用合成音）
+    pageTurn: "assets/audio/page-turn.mp3",
   },
 };

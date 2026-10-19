@@ -164,6 +164,20 @@
     }
   }
 
+  /* ---------- 一次性音效文件（如翻书声） ---------- */
+  const fileSfxCache = {};
+  function playFileSfx(path, vol) {
+    let a = fileSfxCache[path];
+    if (!a) {
+      a = new Audio(path);
+      a.preload = "auto";
+      a.volume = vol || 0.9;
+      fileSfxCache[path] = a;
+    }
+    a.currentTime = 0;
+    a.play().catch(function () {});
+  }
+
   /* ---------- 对外接口 ---------- */
 
   window.Audio = {
@@ -186,6 +200,10 @@
     // 播放某段轻音效
     sfx(name) {
       if (!enabled) return;   // 声音关闭时不播任何音效
+      if (name === "pageTurn" && CFG.sound.pageTurn) {
+        playFileSfx(CFG.sound.pageTurn);
+        return;
+      }
       const fn = SFX[name];
       if (fn) fn();
     },

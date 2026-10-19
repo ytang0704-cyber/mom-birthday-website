@@ -115,12 +115,16 @@
 
   /* ---------- 2. 日记 ---------- */
   let memIndex = 0;
+  let flipping = false;
   const memories = CFG.diary.memories;
-  const pageEl = $("#diary-page");
+  const pageEl = $("#diary-page");            // 当前页（正面）内容
+  const underEl = $("#diary-under-content");  // 翻页时下方露出的目标页
+  const flipperEl = $("#diary-flipper");
+  const diaryBook = $("#diary-book");
 
-  function renderMemory(i) {
+  function renderInto(container, i) {
     const m = memories[i];
-    pageEl.innerHTML = "";
+    container.innerHTML = "";
     const wrap = el("div", "mem-wrap");
 
     wrap.appendChild(el("div", "mem-period", CFG.diary.periodLabels[m.period] || ""));
@@ -167,7 +171,12 @@
       wrap.appendChild(a);
     }
 
-    pageEl.appendChild(wrap);
+    container.appendChild(wrap);
+  }
+
+  function renderMemory(i) {
+    memIndex = i;
+    renderInto(pageEl, i);
     $("#diary-count").textContent = (i + 1) + " / " + memories.length;
     updateDiaryNav();
   }
@@ -178,21 +187,32 @@
   }
 
   function goMemory(delta) {
+    if (flipping) return;
     const next = memIndex + delta;
     if (next < 0 || next >= memories.length) return;
-    memIndex = next;
-    window.Audio.sfx("pageTurn");
-    renderMemory(memIndex);
+    flipping = true;
+
+    renderInto(underEl, next);
+    const forward = delta > 0;
+    flipperEl.classList.add(forward ? "forward" : "backward");
+    setTimeout(function () { window.Audio.sfx("pageTurn"); }, 260);
+
+    flipperEl.addEventListener("animationend", function onEnd() {
+      flipperEl.removeEventListener("animationend", onEnd);
+      flipperEl.classList.remove("forward", "backward");
+      renderMemory(next);
+      flipping = false;
+    });
   }
   $("#diary-prev").addEventListener("click", function () { goMemory(-1); });
   $("#diary-next").addEventListener("click", function () { goMemory(1); });
 
   // 触屏滑动翻页
   let touchX = null;
-  pageEl.addEventListener("touchstart", function (e) {
+  diaryBook.addEventListener("touchstart", function (e) {
     touchX = e.touches[0].clientX;
   }, { passive: true });
-  pageEl.addEventListener("touchend", function (e) {
+  diaryBook.addEventListener("touchend", function (e) {
     if (touchX == null) return;
     const dx = e.changedTouches[0].clientX - touchX;
     if (Math.abs(dx) > 45) goMemory(dx < 0 ? 1 : -1);
